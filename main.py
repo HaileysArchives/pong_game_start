@@ -40,8 +40,19 @@ while game_is_on: # 위에서 tracer(0)만 작성했을 땐 No animation이었�
         ball.bounce_x()
         scoreboard.increase_score()
 
+    # 재시작을 시켜야함 
+
+    #Detect R paddle misses(main.py)
     if ball.xcor() > 380 or ball.xcor() < -380:
-        game_is_on = False
-        scoreboard.game_over()
+        ball.reset_position()
+
+    #Detect L paddle misses:
+    if ball.xcor() < -380:
+        ball.reset_position() 
+    # 별도의 if문으로 만든 이유는 오른쪽 패들과 왼쪽 패들의 서로 플레이어들이 각각의 점수를 얻기 때문이다. 
+
+    # if ball.xcor() > 380 or ball.xcor() < -380:
+    #     game_is_on = False
+    #     scoreboard.game_over()
 
 screen.exitonclick()

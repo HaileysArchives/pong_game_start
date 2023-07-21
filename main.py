@@ -37,4 +37,8 @@ while game_is_on: # 위에서 tracer(0)만 작성했을 땐 No animation이었�
     if ball.distance(r_paddle) < 50 and ball.xcor() > 320 or ball.distance(l_paddle) < 50 and ball.xcor() < -320:
         ball.bounce_x()
 
+    if ball.xcor() > 380 or ball.xcor() < -380:
+        game_is_on = False
+        scoreboard.game_over()
+
 screen.exitonclick()

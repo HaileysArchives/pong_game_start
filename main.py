@@ -3,6 +3,7 @@
 from turtle import Turtle, Screen
 from ball import Ball
 from paddle import Paddle
+from scoreboard import Scoreboard
 import time
 
 screen = Screen()
@@ -16,6 +17,7 @@ screen.tracer(0)
 r_paddle = Paddle((350, 0))
 l_paddle = Paddle((-350, 0))
 ball = Ball()
+scoreboard = Scoreboard()
 
 screen.listen()
 screen.onkey(r_paddle.go_up, "Up")
@@ -36,6 +38,7 @@ while game_is_on: # 위에서 tracer(0)만 작성했을 땐 No animation이었�
 
     if ball.distance(r_paddle) < 50 and ball.xcor() > 320 or ball.distance(l_paddle) < 50 and ball.xcor() < -320:
         ball.bounce_x()
+        scoreboard.increase_score()
 
     if ball.xcor() > 380 or ball.xcor() < -380:
         game_is_on = False

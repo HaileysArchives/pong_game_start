@@ -1,6 +1,4 @@
 from turtle import Turtle
-import random
-
 
 class Ball(Turtle):
 
@@ -10,7 +8,8 @@ class Ball(Turtle):
         self.shapesize(stretch_wid = 1, stretch_len = 1)
         self.shape("circle")
         self.color("yellow")
-        self.speed("fastest")
+        # self.speed("fastest")
+        self.move_speed = 0.1 # 거북이 클래스에 이미 속도라는 메소드가 있기에 혼란을 주지 않으려고 'speed'라고 부르지 않음
         self.x_move = 10
         self.y_move = 10
     
@@ -25,9 +24,11 @@ class Ball(Turtle):
 
     def bounce_x(self):
         self.x_move *= -1
+        self.move_speed *= 0.9
 
     def reset_position(self):
         self.goto(0, 0)
+        self.move_speed = 0.1
         self.bounce_x()
 
 

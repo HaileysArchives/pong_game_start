@@ -28,7 +28,7 @@ screen.onkey(l_paddle.go_down, "s")
 game_is_on = True
 
 while game_is_on: # 위에서 tracer(0)만 작성했을 땐 No animation이었기 때문에 이렇게 while문을 사용해서 계속 업데이트 해주어야 한다.
-    time.sleep(0.1)
+    time.sleep(ball.move_speed)
     screen.update()
     ball.move()
 
@@ -38,17 +38,18 @@ while game_is_on: # 위에서 tracer(0)만 작성했을 땐 No animation이었�
 
     if ball.distance(r_paddle) < 50 and ball.xcor() > 320 or ball.distance(l_paddle) < 50 and ball.xcor() < -320:
         ball.bounce_x()
-        scoreboard.increase_score()
 
     # 재시작을 시켜야함 
 
     #Detect R paddle misses(main.py)
-    if ball.xcor() > 380 or ball.xcor() < -380:
+    if ball.xcor() > 380:
         ball.reset_position()
+        scoreboard.l_point()
 
     #Detect L paddle misses:
     if ball.xcor() < -380:
-        ball.reset_position() 
+        ball.reset_position()
+        scoreboard.r_point() 
     # 별도의 if문으로 만든 이유는 오른쪽 패들과 왼쪽 패들의 서로 플레이어들이 각각의 점수를 얻기 때문이다. 
 
     # if ball.xcor() > 380 or ball.xcor() < -380:
